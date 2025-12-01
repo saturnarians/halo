@@ -3,6 +3,8 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Providers } from "./providers"
 import "./globals.css"
+import GlobalListeners from "./listener/GlobalListeners"
+
 
 const geistSans = Geist({ subsets: ["latin"] })
 const geistMono = Geist_Mono({ subsets: ["latin"] })
@@ -42,8 +44,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.className} font-sans antialiased`}>
+        <GlobalListeners/>
         <Providers>{children}</Providers>
       </body>
     </html>
   )
-}
+};
+
+//suppressHydrationWarning={true}

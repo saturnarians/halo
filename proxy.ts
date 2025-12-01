@@ -4,7 +4,7 @@ import { verifyToken } from "./lib/auth"
 const protectedRoutes = ["/admin"]
 const publicRoutes = ["/admin/login", "/api/auth/login", "/api/auth/me", "/api/contacts"]
 
-export function proxy(request: NextRequest) {
+export default function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname
   const token = request.cookies.get("auth_token")?.value
 
@@ -19,10 +19,10 @@ export function proxy(request: NextRequest) {
       return NextResponse.redirect(new URL("/admin/login", request.url))
     }
 
-    // const payload = verifyToken(token)
-    // if (!payload) {
-    //   return NextResponse.redirect(new URL("/admin/login", request.url))
-    // }
+    const payload = verifyToken(token)
+    if (!payload) {
+      return NextResponse.redirect(new URL("/admin/login", request.url))
+    }
   }
 
   // Allow API routes to handle their own auth

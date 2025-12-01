@@ -1,8 +1,15 @@
 import jwt from "jsonwebtoken"
 import { cookies } from "next/headers"
 
-const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key"
-const JWT_EXPIRE = process.env.JWT_EXPIRE || "7d"
+const JWT_SECRET = process.env.JWT_SECRET as string;
+const JWT_EXPIRE = process.env.JWT_EXPIRE as string;
+
+if (!JWT_SECRET) {
+  throw new Error("JWT_SECRET is not defined in environment variables");
+}
+if (!JWT_EXPIRE) {
+  throw new Error("JWT_EXPIRE is not defined in environment variables");
+}
 
 export interface JWTPayload {
   id: string

@@ -3,6 +3,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   cacheComponents: true,
+  reactStrictMode: true,
+  // swcMinify: true,
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -10,7 +12,9 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     unoptimized: true,
   },
-}
+};
+
+export default nextConfig;
 
 // export default withSentryConfig(nextConfig, {
 //   org: process.env.SENTRY_ORG,

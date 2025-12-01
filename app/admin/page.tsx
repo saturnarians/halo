@@ -5,7 +5,7 @@ import { useAppSelector } from "@/lib/hooks"
 import { ImageIcon, Briefcase, Users, FileText, BookOpen, Mail } from "lucide-react"
 import Link from "next/link"
 import {useEffect, useState } from "react"
-import LoginPage from "./login/page"
+import LoginPage from "../login/page"
 
 
 const containerVariants = {
