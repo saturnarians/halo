@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation"
 export interface Admin {
   id: string
   email: string
-  name?: string
+  // name?: string
 }
 
 export function useAuth() {
@@ -22,11 +22,11 @@ export function useAuth() {
           const data = await response.json()
           setAdmin(data.admin)
         } else {
-          router.push("/admin/login")
+          router.push("/login")
         }
       } catch (error) {
-        console.error("[v0] Auth check error:", error)
-        router.push("/admin/login")
+        console.error("Auth check error:", error)
+        router.push("/login")
       } finally {
         setLoading(false)
       }
@@ -39,7 +39,7 @@ export function useAuth() {
     try {
       await fetch("/api/auth/logout", { method: "POST" })
       setAdmin(null)
-      router.push("/admin/login")
+      router.push("/login")
     } catch (error) {
       console.error("[v0] Logout error:", error)
     }

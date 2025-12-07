@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 export default function GlobalListeners() {
   useEffect(() => {
     // The browser-specific logic goes here
-    const handler = (event) => {
+    const handler = (event:any) => {
       console.error('Globally Unhandled Promise Rejection:', event.reason);
       // Optional: event.preventDefault(); to suppress default browser console error
     };

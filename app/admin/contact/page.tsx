@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Loader2, Trash2, Mail } from "lucide-react"
-import { useFetchData, useMutateData } from "@/lib/hooks"
+import { useFetchData, useMutateData } from "@/hooks"
 import { formatDistanceToNow } from "date-fns"
 
 export default function ContactAdminPage() {

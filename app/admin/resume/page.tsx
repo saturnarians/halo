@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { Loader2, Plus, Edit2, Trash2 } from "lucide-react"
 import { useState } from "react"
-import { useFetchData, useMutateData } from "@/lib/hooks"
+import { useFetchData, useMutateData } from "@/hooks"
 import { SkillForm } from "@/components/admin/forms/skill-form"
 import { EducationForm } from "@/components/admin/forms/education-form"
 import { ExperienceForm } from "@/components/admin/forms/experience-form"

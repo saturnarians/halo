@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useAppDispatch, useAppSelector } from "@/lib/hooks"
-import { setFilterCategory } from "@/lib/slices/portfolioSlice"
+import { setFilterCategory } from "@/store/slices/portfolioSlice"
 import { CardSkeleton } from "./loading-skeleton"
 import Image from "next/image"
 

@@ -1,12 +1,17 @@
-import { NextResponse } from "next/server"
-import { removeAuthCookie } from "@/lib/auth"
+import { NextResponse } from "next/server";
+// import { serialize } from "cookie";
 
-export async function POST() {
-  try {
-    await removeAuthCookie()
-    return NextResponse.json({ success: true })
-  } catch (error) {
-    console.error("[v0] Logout error:", error)
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
-  }
+export function POST() {
+
+  const res = NextResponse.json({message: "Logged out successfully"}, { status: 200 });
+
+  res.cookies.set('token', '', {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
+    maxAge: 0,
+    path: "/",
+  });
+    
+  return res;
 }

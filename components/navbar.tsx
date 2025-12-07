@@ -1,7 +1,7 @@
 "use client"
 
 import { useAppDispatch, useAppSelector } from "@/lib/hooks"
-import { setCurrentPage } from "@/lib/slices/navigationSlice"
+import { setCurrentPage } from "@/store/slices/navigationSlice"
 import { motion } from "framer-motion"
 
 const pages = ["about", "resume", "portfolio", "blog", "contact"] as const

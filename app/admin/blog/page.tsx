@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { Plus, Loader2, Edit2, Trash2 } from "lucide-react"
 import { useState } from "react"
-import { useFetchData, useMutateData } from "@/lib/hooks"
+import { useFetchData, useMutateData } from "@/hooks"
 import { BlogForm } from "@/components/admin/forms/blog-form"
 
 export default function BlogAdminPage() {

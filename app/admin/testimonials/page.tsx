@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useAppDispatch, useAppSelector } from "@/lib/hooks"
-import { addTestimonial, updateTestimonial, deleteTestimonial } from "@/lib/slices/portfolioSlice"
+import { addTestimonial, updateTestimonial, deleteTestimonial } from "@/store/slices/portfolioSlice"
 import { TestimonialManager } from "@/components/admin/testimonial-manager"
 import { useState } from "react"
 import { Plus } from "lucide-react"

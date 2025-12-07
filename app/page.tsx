@@ -10,7 +10,7 @@ import { ContactSection } from "@/components/contact-section"
 import { PageWrapper } from "@/components/page-wrapper"
 import { useAppSelector, useAppDispatch } from "@/lib/hooks"
 import { useEffect } from "react"
-import { setIsMobile } from "@/lib/slices/uiSlice"
+import { setIsMobile } from "@/store/slices/uiSlice"
 // import * as Sentry from "@sentry/nextjs"
 
 // when you initiate sentry you add un-comment the sentry export below

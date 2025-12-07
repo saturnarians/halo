@@ -6,6 +6,7 @@ import { ImageIcon, Briefcase, Users, FileText, BookOpen, Mail } from "lucide-re
 import Link from "next/link"
 import {useEffect, useState } from "react"
 import LoginPage from "../login/page"
+// import { useAuth } from '@/hooks';
 
 
 const containerVariants = {
@@ -66,31 +67,31 @@ const dashboardCards = [
 ]
 
 export default function AdminDashboard() {
-  const [admin, setAdmin] = useState(null);
+  // const [admin, setAdmin] = useAuth();
   const [loading, setLoading] = useState(true);
   const portfolio = useAppSelector((state) => state.portfolio)
 
-  useEffect(() => {
-    async function check() {
-      try {
-        const res = await fetch("/api/auth/me");
-        if(res.ok) {
-          setAdmin(null);
-        } else{
-          const data = await res.json();
-          setAdmin(data);
-        }
-      } catch(err) {
-        setAdmin(null);
-      }finally {
-        setLoading(false);
-      }
-    }
-    check();
-  },[]);
+//   useEffect(() => {
+//     async function check() {
+//       try {
+//         const res = await fetch("/api/auth/me");
+//         if(res.ok) {
+//    const data = await res.json();
+//    setAdmin(data.admin);
+// } else {
+//    setAdmin(null);
+// }
+//       } catch(err) {
+//         setAdmin(null);
+//       }finally {
+//         setLoading(false);
+//       }
+//     }
+//     check();
+//   },[]);
 
-  if (loading) return <div>Loading...</div>;
-  if (!admin) return <LoginPage />;
+  // if (loading) return <div>Loading...</div>;
+  // if (!admin) return <LoginPage />;
 
 
   return (

@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { motion } from "framer-motion"
@@ -9,40 +8,84 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { toast } from "sonner"
+import axios, { AxiosError } from "axios"
+import { z } from "zod"
 
+// 1. Define the Zod Schema for Validation
+const LoginSchema = z.object({
+  email: z.string().email({ message: "Invalid email address" }),
+  password: z.string().min(6, { message: "Password must be at least 6 characters" }),
+})
+
+// Define the type based on the schema for cleaner state/variable usage
+type LoginFormInput = z.infer<typeof LoginSchema>
 
 
 export default function AdminLoginPage() {
   const router = useRouter()
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  // 2. Use the Zod-inferred type for state initialization (optional, but good practice)
+  const [formData, setFormData] = useState<LoginFormInput>({
+    email: "",
+    password: "",
+  })
+  const [errors, setErrors] = useState<Partial<LoginFormInput>>({})
   const [loading, setLoading] = useState(false)
 
-
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value,
+    })
+    // Clear the error for the field being edited
+    if (errors[e.target.id as keyof LoginFormInput]) {
+      setErrors((prev) => ({ ...prev, [e.target.id]: undefined }))
+    }
+  }
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
+    setErrors({}) // Clear previous errors
 
     try {
-      const response = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      })
+      // 3. Client-side Validation with Zod
+      const validationResult = LoginSchema.safeParse(formData)
 
-      const data = await response.json()
-
-      if (!response.ok) {
-        toast.error(data.error || "Login failed")
+      if (!validationResult.success) {
+        // Map Zod errors to a simpler state object
+        const newErrors: Partial<LoginFormInput> = {}
+        for (const issue of validationResult.error.issues) {
+          newErrors[issue.path[0] as keyof LoginFormInput] = issue.message
+        }
+        setErrors(newErrors)
+        toast.error("Validation failed. Check your input.")
+        setLoading(false)
         return
       }
 
-      toast.success("Login successful!")
-      router.push("/admin")
+      // 4. Use Axios for API Request
+      const response = await axios.post("/api/auth/login", validationResult.data, {
+        headers: { "Content-Type": "application/json" },
+      })
+      
+      // Axios throws an error for 4xx/5xx status codes, so we only handle success here.
+      if (response.status === 200) {
+          toast.success("Login successful!")
+          router.push("/admin")
+      }
+      
     } catch (error) {
       console.error("[v0] Login error:", error)
-      toast.error("An error occurred")
+      
+      // 5. Handle Axios and API errors
+      if (axios.isAxiosError(error)) {
+        const axiosError = error as AxiosError<{ error: string }>
+        const errorMessage = axiosError.response?.data?.error || "Login failed due to an API error."
+        toast.error(errorMessage)
+      } else {
+        toast.error("An unexpected error occurred.")
+      }
+
     } finally {
       setLoading(false)
     }
@@ -66,11 +109,12 @@ export default function AdminLoginPage() {
                   id="email"
                   type="email"
                   placeholder="admin@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={formData.email}
+                  onChange={handleInputChange}
                   required
                   disabled={loading}
                 />
+                {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
               </div>
               <div className="space-y-2">
                 <label htmlFor="password" className="text-sm font-medium">
@@ -80,11 +124,12 @@ export default function AdminLoginPage() {
                   id="password"
                   type="password"
                   placeholder="••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={formData.password}
+                  onChange={handleInputChange}
                   required
                   disabled={loading}
                 />
+                {errors.password && <p className="text-sm text-red-500">{errors.password}</p>}
               </div>
               <Button type="submit" className="w-full" disabled={loading}>
                 {loading ? "Logging in..." : "Login"}

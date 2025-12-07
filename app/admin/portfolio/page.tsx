@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { useState } from "react"
 import { Plus, Loader2, Trash2, Edit2 } from "lucide-react"
-import { useFetchData, useMutateData } from "@/lib/hooks"
+import { useFetchData, useMutateData } from "@/hooks"
 import { toast } from "sonner"
 import { PortfolioForm } from "@/components/admin/forms/portfolio-form"
 

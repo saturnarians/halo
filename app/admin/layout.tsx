@@ -3,6 +3,8 @@ import type { Metadata } from "next"
 import { AdminSidebar } from "@/components/admin/admin-sidebar"
 import { AdminHeader } from "@/components/admin/admin-header"
 import { AdminProtected } from "@/components/admin/admin-protected"
+// import { getCurrentAdmin } from "@/lib/jwt"
+
 
 export const metadata: Metadata = {
   title: "Admin Dashboard",
@@ -14,6 +16,9 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode
 }) {
+
+  // const user = await getCurrentAdmin();
+
   return (
     <AdminProtected>
       <div className="flex h-screen bg-background">

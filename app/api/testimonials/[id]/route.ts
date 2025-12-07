@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { prisma } from "@/lib/prisma"
+import { prisma } from "@/lib/prisma/prisma"
 import { withAuthMiddleware } from "@/lib/middleware"
 
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {

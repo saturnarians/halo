@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation"
 import { LogOut, User } from "lucide-react"
-import { useAuth } from "@/lib/hooks/useAuth"
+import { useAuth } from "@/hooks/useAuth"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 

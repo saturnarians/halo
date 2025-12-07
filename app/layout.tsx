@@ -10,7 +10,7 @@ const geistSans = Geist({ subsets: ["latin"] })
 const geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Richard Hanrick | Portfolio",
+  title: "Isibor Jerry | Portfolio",
   description: "Web Developer & Creative Director - Portfolio showcasing design and development work",
   generator: "Next.js",
   icons: {
@@ -42,7 +42,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning={true}>
       <body className={`${geistSans.className} font-sans antialiased`}>
         <GlobalListeners/>
         <Providers>{children}</Providers>

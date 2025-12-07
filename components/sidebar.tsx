@@ -1,7 +1,7 @@
 "use client"
 
 import { useAppDispatch, useAppSelector } from "@/lib/hooks"
-import { toggleSidebar, setSidebarOpen } from "@/lib/slices/navigationSlice"
+import { toggleSidebar, setSidebarOpen } from "@/store/slices/navigationSlice"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { Mail, Phone, Calendar, MapPin, Facebook, Twitter, Instagram, ChevronDown } from "lucide-react"
