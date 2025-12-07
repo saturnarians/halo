@@ -1,6 +1,6 @@
 "use client"
 
-import { useAppDispatch, useAppSelector } from "@/lib/hooks"
+import { useAppDispatch, useAppSelector } from "@/store/hooks"
 import { toggleSidebar, setSidebarOpen } from "@/store/slices/navigationSlice"
 import { motion } from "framer-motion"
 import Image from "next/image"

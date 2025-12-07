@@ -23,7 +23,10 @@ const initialState: AuthState = {
 export const fetchMe = createAsyncThunk("auth/fetchMe", async () => {
   const res = await fetch("/api/auth/me");
   if (!res.ok) throw new Error("Failed to fetch user");
-  return res.json();
+
+  const data = await res.json();
+
+  return data.admin ;
 });
 
 const authSlice = createSlice({

@@ -8,7 +8,7 @@ import { toast } from "sonner"
 
 export function AdminHeader() {
   const pathname = usePathname()
-  const { admin, logout } = useAuth()
+  const { admin, loading, logout } = useAuth();
 
   const getPageTitle = () => {
     const segments = pathname.split("/").filter(Boolean)

@@ -5,7 +5,7 @@ import portfolioReducer from "./slices/portfolioSlice"
 import uiReducer from "./slices/uiSlice"
 import authReducer from './slices/authSlice'
 
-export const store = configureStore({
+export const store = configureStore({  
   reducer: {
     navigation: navigationReducer,
     portfolio: portfolioReducer,

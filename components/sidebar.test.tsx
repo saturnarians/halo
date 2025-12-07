@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react"
 import { Sidebar } from "./sidebar"
 import { Provider } from "react-redux"
-import { store } from "@/lib/store"
+import { store } from "@/store/index"
 
 describe("Sidebar", () => {
   it("renders the sidebar", () => {

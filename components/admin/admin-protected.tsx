@@ -6,7 +6,8 @@ import { useAuth } from "@/hooks/useAuth"
 import { Loader2 } from "lucide-react"
 
 export function AdminProtected({ children }: { children: React.ReactNode }) {
-  const { admin, loading } = useAuth()
+  const { admin, loading, logout } = useAuth();
+  console.log({ admin, loading });
 
   if (loading) {
     return (
@@ -17,7 +18,11 @@ export function AdminProtected({ children }: { children: React.ReactNode }) {
   }
 
   if (!admin) {
-    return null
+    return (
+            <div className="flex items-center justify-center min-h-screen">
+        <p className="text-red-500 text-lg">Not authorized</p>
+      </div>
+    )
   }
   return <>{children}</>
 }

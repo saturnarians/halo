@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useAppSelector } from "@/lib/hooks"
+import { useAppSelector } from "@/store/hooks"
 import { ImageIcon, Briefcase, Users, FileText, BookOpen, Mail } from "lucide-react"
 import Link from "next/link"
 import {useEffect, useState } from "react"

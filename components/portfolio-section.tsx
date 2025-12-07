@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useAppDispatch, useAppSelector } from "@/lib/hooks"
+import { useAppDispatch, useAppSelector } from "@/store/hooks"
 import { setFilterCategory } from "@/store/slices/portfolioSlice"
 import { CardSkeleton } from "./loading-skeleton"
 import Image from "next/image"

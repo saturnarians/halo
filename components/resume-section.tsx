@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useAppSelector } from "@/lib/hooks"
+import { useAppSelector } from "@/store/hooks"
 import { Book, Briefcase } from "lucide-react"
 import { CardSkeleton } from "./loading-skeleton"
 
